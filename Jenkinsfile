@@ -18,5 +18,18 @@ pipeline {
 				}
 			}
 		}
+		
+		stage('Deploy to staging') {
+			steps {
+				build 'deploy-to-staging'
+			}
+		}
 	}
 }
+
+
+
+
+
+
+
