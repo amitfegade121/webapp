@@ -24,6 +24,24 @@ pipeline {
 				build 'deploy-to-staging'
 			}
 		}
+		
+		stage('Deploy to production') {
+			steps {
+				timeout(time: 3, unit: 'DAYS') {
+					input 'Approve deployment to production?'
+				}
+				
+				build 'deploy-to-production'
+			}
+			post {
+				success {
+					echo 'Application is deployed successfully....'
+				}
+				failure {
+					echo 'Failed to deploy an application...'
+				}
+			}
+		}
 	}
 }
 
